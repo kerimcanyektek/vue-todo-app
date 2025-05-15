@@ -16,9 +16,9 @@
     />
 
     <div class="flex justify-center gap-2 mt-4">
-      <button @click="filter.value = 'all'" :class="filterClass('all')">Hepsi</button>
-      <button @click="filter.value = 'active'" :class="filterClass('active')">Aktif</button>
-      <button @click="filter.value = 'completed'" :class="filterClass('completed')">Tamamlandı</button>
+      <button @click="() => setFilter('all')" :class="filterClass('all')">Hepsi</button>
+      <button @click="() => setFilter('active')" :class="filterClass('active')">Aktif</button>
+      <button @click="() => setFilter('completed')" :class="filterClass('completed')">Tamamlandı</button>
     </div>
   </section>
 </template>
@@ -36,6 +36,10 @@ const props = defineProps({
 const emit = defineEmits(['toggle-dark-mode']);
 
 const { tasks, filter, addTask, deleteTask, toggleComplete, editTask, filteredTasks } = useTasks();
+
+const setFilter = (type) => {
+  filter.value = type;
+};
 
 const filterClass = (type) =>
   `px-4 py-2 rounded ${
